@@ -1,0 +1,410 @@
+/* ============================================================================
+   GLOBAL THUNDER TRADE (GTT) — CUSTOM PATTERN MARKER CURSOR
+   Inspired by Fashion Pattern-Making, Garment Construction & Precision Cutting
+   Features: Intelligent Automatic Contrast (Adaptive Black/White)
+   ============================================================================ */
+
+/* Hide native cursor ONLY on devices with hover & fine pointer (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  body.gtt-custom-cursor-active,
+  body.gtt-custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  /* Preserve natural I-beam cursor for text editing */
+  body.gtt-custom-cursor-active input,
+  body.gtt-custom-cursor-active textarea,
+  body.gtt-custom-cursor-active [contenteditable="true"],
+  body.gtt-custom-cursor-active select {
+    cursor: text !important;
+  }
+}
+
+/* Master Custom Cursor Wrapper */
+.gtt-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999999;
+  overflow: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gtt-cursor-container.cursor-hidden {
+  opacity: 0;
+}
+
+/* Global Smooth Color Transition for Adaptive Theme Switching */
+.gtt-cursor-needle,
+.gtt-cursor-reticle,
+.gtt-reticle-box,
+.gtt-notch,
+.gtt-tick-h,
+.gtt-tick-v,
+.gtt-cursor-label {
+  transition: color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 01 — Instant Needle Point (0ms latency, exact mouse position) */
+.gtt-cursor-needle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  z-index: 1000000;
+  transition: transform 0.15s ease, opacity 0.2s ease, width 0.2s ease, height 0.2s ease, background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* In text/expand states, shrink the needle point so label is unobstructed */
+.gtt-cursor-container.has-label .gtt-cursor-needle,
+.gtt-cursor-container.state-text .gtt-cursor-needle {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+}
+
+/* 02 — Precision Pattern Reticle (Smooth RAF lerp follow) */
+.gtt-cursor-reticle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform, width, height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+}
+
+/* Inner Pattern Framing Structure */
+.gtt-reticle-box {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  transition: border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Technical Corner Notches (Pattern drafting registration marks) */
+.gtt-notch {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-style: solid;
+  opacity: 0.95;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease;
+}
+
+.gtt-notch-tl {
+  top: -2px;
+  left: -2px;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.gtt-notch-tr {
+  top: -2px;
+  right: -2px;
+  border-width: 1.5px 1.5px 0 0;
+}
+
+.gtt-notch-bl {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 1.5px 1.5px;
+}
+
+.gtt-notch-br {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+/* Cardinal Calibration Ticks (+ crosshair marks) */
+.gtt-tick-h,
+.gtt-tick-v {
+  position: absolute;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.3s ease, background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gtt-tick-h {
+  width: 100%;
+  height: 1px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0.4);
+  opacity: 0.6;
+}
+
+.gtt-tick-v {
+  height: 100%;
+  width: 1px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.4);
+  opacity: 0.6;
+}
+
+/* Central Micro-Typography Label */
+.gtt-cursor-label {
+  position: relative;
+  z-index: 2;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.65);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  line-height: 1;
+  padding-left: 0.16em; /* Optical centering for letter-spacing */
+}
+
+/* ============================================================================
+   AUTOMATIC CONTRAST THEMES (Black / White Switching)
+   ============================================================================ */
+
+/* THEME 1: Over DARK Background / Content → Cursor is WHITE */
+.theme-dark-bg .gtt-cursor-needle {
+  background-color: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+.theme-dark-bg .gtt-reticle-box {
+  border-color: rgba(255, 255, 255, 0.7);
+  background-color: transparent;
+}
+
+.theme-dark-bg .gtt-notch {
+  border-color: #ffffff;
+}
+
+.theme-dark-bg .gtt-tick-h,
+.theme-dark-bg .gtt-tick-v {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.theme-dark-bg .gtt-cursor-label {
+  color: #ffffff;
+}
+
+/* Dark Theme Hover Expansions */
+.theme-dark-bg.state-view .gtt-reticle-box,
+.theme-dark-bg.state-explore .gtt-reticle-box,
+.theme-dark-bg.state-build .gtt-reticle-box,
+.theme-dark-bg.state-drag .gtt-reticle-box {
+  border-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.theme-dark-bg.state-link .gtt-reticle-box {
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* THEME 2: Over LIGHT / OFF-WHITE Background / Content → Cursor is BLACK */
+.theme-light-bg .gtt-cursor-needle {
+  background-color: #0a0a0a;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.theme-light-bg .gtt-reticle-box {
+  border-color: rgba(10, 10, 10, 0.65);
+  background-color: transparent;
+}
+
+.theme-light-bg .gtt-notch {
+  border-color: #0a0a0a;
+}
+
+.theme-light-bg .gtt-tick-h,
+.theme-light-bg .gtt-tick-v {
+  background-color: rgba(10, 10, 10, 0.65);
+}
+
+.theme-light-bg .gtt-cursor-label {
+  color: #0a0a0a;
+}
+
+/* Light Theme Hover Expansions */
+.theme-light-bg.state-view .gtt-reticle-box,
+.theme-light-bg.state-explore .gtt-reticle-box,
+.theme-light-bg.state-build .gtt-reticle-box,
+.theme-light-bg.state-drag .gtt-reticle-box {
+  border-color: rgba(10, 10, 10, 0.95);
+  background-color: rgba(10, 10, 10, 0.08);
+}
+
+.theme-light-bg.state-link .gtt-reticle-box {
+  border-color: rgba(10, 10, 10, 0.85);
+}
+
+/* ============================================================================
+   INTERACTION STATES
+   ============================================================================ */
+
+/* STATE: Normal */
+.state-normal .gtt-cursor-reticle {
+  width: 22px;
+  height: 22px;
+}
+.state-normal .gtt-reticle-box {
+  border-radius: 50%;
+}
+
+/* STATE: Link / Button Hover (Subtle expansion + magnetic attraction) */
+.state-link .gtt-cursor-reticle {
+  width: 36px;
+  height: 36px;
+}
+.state-link .gtt-reticle-box {
+  border-radius: 50%;
+}
+.state-link .gtt-notch {
+  width: 6px;
+  height: 6px;
+}
+.state-link .gtt-tick-h,
+.state-link .gtt-tick-v {
+  opacity: 0;
+}
+
+/* STATE: VIEW (Hover over product images, lookbook, gallery) */
+.state-view .gtt-cursor-reticle {
+  width: 62px;
+  height: 62px;
+}
+.state-view .gtt-reticle-box {
+  border-radius: 50%;
+}
+.state-view .gtt-notch {
+  width: 8px;
+  height: 8px;
+}
+.state-view .gtt-cursor-label {
+  opacity: 1;
+  transform: scale(1);
+}
+.state-view .gtt-tick-h,
+.state-view .gtt-tick-v {
+  opacity: 0;
+}
+
+/* STATE: EXPLORE (Hover over product categories, category cards) */
+.state-explore .gtt-cursor-reticle {
+  width: 68px;
+  height: 68px;
+}
+.state-explore .gtt-reticle-box {
+  border-radius: 50%;
+}
+.state-explore .gtt-notch {
+  width: 9px;
+  height: 9px;
+}
+.state-explore .gtt-cursor-label {
+  opacity: 1;
+  transform: scale(1);
+}
+.state-explore .gtt-tick-h,
+.state-explore .gtt-tick-v {
+  opacity: 0;
+}
+
+/* STATE: BUILD (Hover over "Build Your Product" buttons, configurator) */
+.state-build .gtt-cursor-reticle {
+  width: 62px;
+  height: 62px;
+}
+.state-build .gtt-reticle-box {
+  border-radius: 6px; /* Technical square with corner calibration notches */
+}
+.state-build .gtt-notch {
+  width: 8px;
+  height: 8px;
+}
+.state-build .gtt-cursor-label {
+  opacity: 1;
+  transform: scale(1);
+}
+.state-build .gtt-tick-h,
+.state-build .gtt-tick-v {
+  opacity: 0;
+}
+
+/* STATE: DRAG (Hover over 3D interactive elements, globe, horizontal drag sliders) */
+.state-drag .gtt-cursor-reticle {
+  width: 58px;
+  height: 58px;
+}
+.state-drag .gtt-reticle-box {
+  border-radius: 50%;
+}
+.state-drag .gtt-cursor-label {
+  opacity: 1;
+  transform: scale(1);
+}
+.state-drag .gtt-tick-h {
+  opacity: 0.7;
+  transform: translateY(-50%) scaleX(0.9);
+}
+.state-drag .gtt-tick-v {
+  opacity: 0;
+}
+
+/* STATE: TEXT (Hover over text input fields, textarea) */
+.state-text .gtt-cursor-reticle {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+
+/* CLICK / ACTIVE STATE (Micro-press tactile feedback) */
+.gtt-cursor-container.is-clicking .gtt-cursor-reticle {
+  transform: translate(-50%, -50%) scale(0.88);
+}
+.gtt-cursor-container.is-clicking .gtt-cursor-needle {
+  transform: translate(-50%, -50%) scale(1.6);
+}
+
+/* ============================================================================
+   ACCESSIBILITY & REDUCED MOTION
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .gtt-cursor-needle,
+  .gtt-cursor-reticle,
+  .gtt-reticle-box,
+  .gtt-notch,
+  .gtt-tick-h,
+  .gtt-tick-v,
+  .gtt-cursor-label {
+    transition: none !important;
+  }
+}

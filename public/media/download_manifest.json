@@ -1,0 +1,870 @@
+[
+  {
+    "dest": "public/media/services/01-manufacturing.jpg",
+    "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1400&q=85",
+    "title": "Product Development & Garment Engineering Atelier",
+    "status": "SUCCESS",
+    "size": 222795
+  },
+  {
+    "dest": "public/media/services/02-photography.jpg",
+    "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85",
+    "title": "Editorial Lookbook & Studio Model Photography",
+    "status": "SUCCESS",
+    "size": 131013
+  },
+  {
+    "dest": "public/media/services/03-marketing.jpg",
+    "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1400&q=85",
+    "title": "Social Media & Brand Drop Rollout",
+    "status": "SUCCESS",
+    "size": 11605
+  },
+  {
+    "dest": "public/media/services/04-web-ecommerce.jpg",
+    "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=85",
+    "title": "Modern E-Commerce Storefront & Web Architecture",
+    "status": "SUCCESS",
+    "size": 60167
+  },
+  {
+    "dest": "public/media/services/hero-factory.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1200&q=85",
+    "title": "Precision Factory Production Line",
+    "status": "SUCCESS",
+    "size": 19457
+  },
+  {
+    "dest": "public/media/services/hero-photography.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=85",
+    "title": "Studio Ghost Mannequin & Flat Lay Photography",
+    "status": "SUCCESS",
+    "size": 109344
+  },
+  {
+    "dest": "public/media/services/hero-models.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
+    "title": "On-Model Fashion Campaign Shoot",
+    "status": "SUCCESS",
+    "size": 124092
+  },
+  {
+    "dest": "public/media/services/hero-ecommerce.jpg",
+    "url": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+    "title": "Digital Presence & Shopify Architecture",
+    "status": "SUCCESS",
+    "size": 161360
+  },
+  {
+    "dest": "public/media/services/gallery-product.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
+    "title": "Clean E-Commerce Ghost Mannequin",
+    "status": "SUCCESS",
+    "size": 68588
+  },
+  {
+    "dest": "public/media/services/gallery-detail.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=900&q=80",
+    "title": "Embroidery & Fabric Texture Macro Close-up",
+    "status": "SUCCESS",
+    "size": 24447
+  },
+  {
+    "dest": "public/media/services/gallery-model.jpg",
+    "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
+    "title": "Editorial On-Model Fashion Lookbook",
+    "status": "SUCCESS",
+    "size": 58191
+  },
+  {
+    "dest": "public/media/services/gallery-video.jpg",
+    "url": "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=900&q=80",
+    "title": "Short-Form Video & Motion Reels",
+    "status": "SUCCESS",
+    "size": 19406
+  },
+  {
+    "dest": "public/media/services/gallery-bts.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=900&q=80",
+    "title": "Factory Craft & Production Documentation",
+    "status": "SUCCESS",
+    "size": 13474
+  },
+  {
+    "dest": "public/media/services/gallery-campaign.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+    "title": "Streetwear Lifestyle Campaign",
+    "status": "SUCCESS",
+    "size": 61209
+  },
+  {
+    "dest": "public/media/services/social-product.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80",
+    "title": "Garment Inspection & Finished Hoodie",
+    "status": "SUCCESS",
+    "size": 45058
+  },
+  {
+    "dest": "public/media/services/social-content.jpg",
+    "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80",
+    "title": "Studio & Model Shoot Stills",
+    "status": "SUCCESS",
+    "size": 38582
+  },
+  {
+    "dest": "public/media/services/social-post.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80",
+    "title": "Curated Feed Drop & Product Carousel",
+    "status": "SUCCESS",
+    "size": 43716
+  },
+  {
+    "dest": "public/media/services/social-reel.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=700&q=80",
+    "title": "Behind-The-Stitch Motion Reel",
+    "status": "SUCCESS",
+    "size": 16942
+  },
+  {
+    "dest": "public/media/services/social-campaign.jpg",
+    "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80",
+    "title": "Collection Launch Momentum & Drop",
+    "status": "SUCCESS",
+    "size": 25707
+  },
+  {
+    "dest": "public/media/services/journey-01-idea.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80",
+    "title": "Product & Concept Design",
+    "status": "SUCCESS",
+    "size": 61209
+  },
+  {
+    "dest": "public/media/services/journey-02-dev.jpg",
+    "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=80",
+    "title": "Fabric & Pattern Engineering",
+    "status": "SUCCESS",
+    "size": 85119
+  },
+  {
+    "dest": "public/media/services/journey-03-sample.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=900&q=80",
+    "title": "Sample Physical Prototype",
+    "status": "SUCCESS",
+    "size": 65333
+  },
+  {
+    "dest": "public/media/services/journey-04-mfg.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=900&q=80",
+    "title": "Industrial Bulk Cut and Sew",
+    "status": "SUCCESS",
+    "size": 13474
+  },
+  {
+    "dest": "public/media/services/journey-05-content.jpg",
+    "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
+    "title": "Studio & Model Photography",
+    "status": "SUCCESS",
+    "size": 58191
+  },
+  {
+    "dest": "public/media/services/journey-06-social.jpg",
+    "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80",
+    "title": "Reels & Grid Curation",
+    "status": "SUCCESS",
+    "size": 7897
+  },
+  {
+    "dest": "public/media/services/journey-07-website.jpg",
+    "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+    "title": "Digital Brand Platform",
+    "status": "SUCCESS",
+    "size": 33270
+  },
+  {
+    "dest": "public/media/services/journey-08-shopify.jpg",
+    "url": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=900&q=80",
+    "title": "Shopify Store Checkout",
+    "status": "SUCCESS",
+    "size": 100180
+  },
+  {
+    "dest": "public/media/services/journey-09-launch.jpg",
+    "url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=900&q=80",
+    "title": "Collection Drop Day",
+    "status": "SUCCESS",
+    "size": 234909
+  },
+  {
+    "dest": "public/media/portfolio/noir-atelier-store.jpg",
+    "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85",
+    "title": "Noir Atelier Streetwear Storefront",
+    "status": "SUCCESS",
+    "size": 50056
+  },
+  {
+    "dest": "public/media/portfolio/parallel-studios-store.jpg",
+    "url": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85",
+    "title": "Parallel Studios Contemporary Menswear Platform",
+    "status": "SUCCESS",
+    "size": 161360
+  },
+  {
+    "dest": "public/media/portfolio/kinetic-dept-store.jpg",
+    "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
+    "title": "Kinetic Dept Technical Apparel Storefront",
+    "status": "SUCCESS",
+    "size": 57275
+  },
+  {
+    "dest": "public/media/portfolio/archive-supply-store.jpg",
+    "url": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=85",
+    "title": "Archive Supply Co Wholesale Portal",
+    "status": "SUCCESS",
+    "size": 59800
+  },
+  {
+    "dest": "public/media/portfolio/system09-store.jpg",
+    "url": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1200&q=85",
+    "title": "System 09 Labs Limited Capsule Drop Microsite",
+    "status": "SUCCESS",
+    "size": 84036
+  },
+  {
+    "dest": "public/media/blanks/heavyweight-boxy-hoodie-main.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Boxy Blank Hoodie Main",
+    "status": "SUCCESS",
+    "size": 77277
+  },
+  {
+    "dest": "public/media/blanks/heavyweight-boxy-hoodie-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Boxy Blank Hoodie Alt",
+    "status": "SUCCESS",
+    "size": 43881
+  },
+  {
+    "dest": "public/media/blanks/vintage-cut-heavy-t-shirt-main.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80",
+    "title": "Vintage Cut Heavy Blank T-Shirt Main",
+    "status": "SUCCESS",
+    "size": 78003
+  },
+  {
+    "dest": "public/media/blanks/vintage-cut-heavy-t-shirt-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=1000&q=80",
+    "title": "Vintage Cut Heavy Blank T-Shirt Alt",
+    "status": "SUCCESS",
+    "size": 342292
+  },
+  {
+    "dest": "public/media/blanks/loopback-blank-crewneck-main.jpg",
+    "url": "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Loopback Heavy Blank Crewneck Main",
+    "status": "SUCCESS",
+    "size": 64225
+  },
+  {
+    "dest": "public/media/blanks/loopback-blank-crewneck-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Loopback Heavy Blank Crewneck Alt",
+    "status": "SUCCESS",
+    "size": 77277
+  },
+  {
+    "dest": "public/media/blanks/heavy-fleece-baggy-sweat-pants-main.jpg",
+    "url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavy Fleece Baggy Sweat Pants Main",
+    "status": "SUCCESS",
+    "size": 68044
+  },
+  {
+    "dest": "public/media/blanks/heavy-fleece-baggy-sweat-pants-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavy Fleece Baggy Sweat Pants Alt",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "dest": "public/media/blanks/french-terry-heavyweight-shorts-main.jpg",
+    "url": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavy French Terry Blank Shorts Main",
+    "status": "SUCCESS",
+    "size": 85850
+  },
+  {
+    "dest": "public/media/blanks/french-terry-heavyweight-shorts-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavy French Terry Blank Shorts Alt",
+    "status": "SUCCESS",
+    "size": 68044
+  },
+  {
+    "dest": "public/media/blanks/oversized-luxury-streetwear-tee-main.jpg",
+    "url": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80",
+    "title": "Oversized Heavyweight Blank Tee Main",
+    "status": "SUCCESS",
+    "size": 26555
+  },
+  {
+    "dest": "public/media/blanks/oversized-luxury-streetwear-tee-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80",
+    "title": "Oversized Heavyweight Blank Tee Alt",
+    "status": "SUCCESS",
+    "size": 78003
+  },
+  {
+    "dest": "public/media/blanks/cropped-sleeveless-boxy-shirt-main.jpg",
+    "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80",
+    "title": "Cropped Sleeveless Boxy Blank Shirt Main",
+    "status": "SUCCESS",
+    "size": 67759
+  },
+  {
+    "dest": "public/media/blanks/cropped-sleeveless-boxy-shirt-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80",
+    "title": "Cropped Sleeveless Boxy Blank Shirt Alt",
+    "status": "SUCCESS",
+    "size": 78003
+  },
+  {
+    "dest": "public/media/blanks/minimal-zip-work-jacket-main.jpg",
+    "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=80",
+    "title": "Minimalist Zip Canvas Blank Jacket Main",
+    "status": "SUCCESS",
+    "size": 169323
+  },
+  {
+    "dest": "public/media/blanks/minimal-zip-work-jacket-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=80",
+    "title": "Minimalist Zip Canvas Blank Jacket Alt",
+    "status": "SUCCESS",
+    "size": 28909
+  },
+  {
+    "dest": "public/media/blanks/heavyweight-zip-up-hoodie-main.jpg",
+    "url": "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Full-Zip Blank Hoodie Main",
+    "status": "SUCCESS",
+    "size": 43881
+  },
+  {
+    "dest": "public/media/blanks/heavyweight-zip-up-hoodie-alt.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Full-Zip Blank Hoodie Alt",
+    "status": "SUCCESS",
+    "size": 77277
+  },
+  {
+    "dest": "public/media/blanks/blanks-hero-bg.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1800&q=85",
+    "title": "Blanks Program Studio Hero Backdrop",
+    "status": "SUCCESS",
+    "size": 237203
+  },
+  {
+    "dest": "public/media/blanks/blanks-cta-bg.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1600&q=80",
+    "title": "Blanks Program CTA Backdrop",
+    "status": "SUCCESS",
+    "size": 139042
+  },
+  {
+    "dest": "public/media/blanks/stage-01-blank.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=85",
+    "title": "Blank Stage 01 - Silhouette Selection",
+    "status": "SUCCESS",
+    "size": 114831
+  },
+  {
+    "dest": "public/media/blanks/stage-02-colour.jpg",
+    "url": "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=1200&q=85",
+    "title": "Blank Stage 02 - Colourway & Dye",
+    "status": "SUCCESS",
+    "size": 73389
+  },
+  {
+    "dest": "public/media/blanks/stage-03-branding.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=85",
+    "title": "Blank Stage 03 - Branding & Prints",
+    "status": "SUCCESS",
+    "size": 43354
+  },
+  {
+    "dest": "public/media/blanks/stage-04-details.jpg",
+    "url": "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1200&q=85",
+    "title": "Blank Stage 04 - Trims & Labels",
+    "status": "SUCCESS",
+    "size": 96852
+  },
+  {
+    "dest": "public/media/blanks/stage-05-package.jpg",
+    "url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=1200&q=85",
+    "title": "Blank Stage 05 - Retail Packaging",
+    "status": "SUCCESS",
+    "size": 425815
+  },
+  {
+    "dest": "public/media/products/leather-welding-gloves.jpg",
+    "url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80",
+    "title": "Split Cowhide Leather Welding Gloves",
+    "status": "SUCCESS",
+    "size": 154067
+  },
+  {
+    "dest": "public/media/products/working-gloves.jpg",
+    "url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80",
+    "title": "Reinforced Industrial Work Gloves",
+    "status": "SUCCESS",
+    "size": 51206
+  },
+  {
+    "dest": "public/media/products/furniture-gloves.jpg",
+    "url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80",
+    "title": "Precision Handling Furniture & Upholstery Gloves",
+    "status": "SUCCESS",
+    "size": 195509
+  },
+  {
+    "dest": "public/media/products/rescue-jackets.jpg",
+    "url": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1000&q=80",
+    "title": "High-Visibility Emergency Rescue Jacket",
+    "status": "SUCCESS",
+    "size": 230153
+  },
+  {
+    "dest": "public/media/products/safety-jackets.jpg",
+    "url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80",
+    "title": "Certified Fluorescent Industrial Safety Jacket",
+    "status": "SUCCESS",
+    "size": 154067
+  },
+  {
+    "dest": "public/media/products/other-industrial.jpg",
+    "url": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1000&q=80",
+    "title": "Specialized Industrial Personal Protective Equipment",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "dest": "public/media/products/streetwear-hoodies.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Boxy Hoodie",
+    "status": "SUCCESS",
+    "size": 77277
+  },
+  {
+    "dest": "public/media/products/streetwear-tees.jpg",
+    "url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80",
+    "title": "Vintage Drop-Shoulder T-Shirt",
+    "status": "SUCCESS",
+    "size": 78003
+  },
+  {
+    "dest": "public/media/products/streetwear-sweatshirts.jpg",
+    "url": "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight Crewneck Sweatshirt",
+    "status": "SUCCESS",
+    "size": 64225
+  },
+  {
+    "dest": "public/media/products/streetwear-joggers.jpg",
+    "url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1000&q=80",
+    "title": "Relaxed Heavyweight Joggers",
+    "status": "SUCCESS",
+    "size": 68044
+  },
+  {
+    "dest": "public/media/products/streetwear-cargos.jpg",
+    "url": "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=1000&q=80",
+    "title": "Technical Streetwear Cargo Pants",
+    "status": "SUCCESS",
+    "size": 111937
+  },
+  {
+    "dest": "public/media/products/streetwear-jeans.jpg",
+    "url": "https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=1000&q=80",
+    "title": "Vintage Washed Denim Jeans",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "dest": "public/media/products/streetwear-varsity.jpg",
+    "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=80",
+    "title": "Luxury Wool & Leather Varsity Jacket",
+    "status": "SUCCESS",
+    "size": 169323
+  },
+  {
+    "dest": "public/media/products/streetwear-tracksuits.jpg",
+    "url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=80",
+    "title": "Technical Tracksuit Two-Piece Set",
+    "status": "SUCCESS",
+    "size": 68341
+  },
+  {
+    "dest": "public/media/products/streetwear-shorts.jpg",
+    "url": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=1000&q=80",
+    "title": "Heavyweight French Terry Shorts",
+    "status": "SUCCESS",
+    "size": 85850
+  },
+  {
+    "dest": "public/media/products/streetwear-shirts.jpg",
+    "url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=80",
+    "title": "Oversized Boxy Flannel Shirt",
+    "status": "SUCCESS",
+    "size": 76153
+  },
+  {
+    "dest": "public/media/products/streetwear-tailored-jackets.jpg",
+    "url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1000&q=80",
+    "title": "Boxy Minimalist Tailored Jacket",
+    "status": "SUCCESS",
+    "size": 139675
+  },
+  {
+    "dest": "public/media/products/streetwear-coord.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80",
+    "title": "Luxury Knit Two-Piece Co-Ord Set",
+    "status": "SUCCESS",
+    "size": 72691
+  },
+  {
+    "dest": "public/media/products/streetwear-dresses.jpg",
+    "url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1000&q=80",
+    "title": "Contemporary Heavyweight Rib Dress",
+    "status": "SUCCESS",
+    "size": 142520
+  },
+  {
+    "dest": "public/media/products/streetwear-bespoke.jpg",
+    "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80",
+    "title": "Bespoke Streetwear Cut-and-Sew Development",
+    "status": "SUCCESS",
+    "size": 67759
+  },
+  {
+    "dest": "public/media/products/leather-moto-jacket.jpg",
+    "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=80",
+    "title": "Mastercrafted Full-Grain Leather Moto Jacket",
+    "status": "SUCCESS",
+    "size": 169323
+  },
+  {
+    "dest": "public/media/products/leather-vest.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1000&q=80",
+    "title": "Artisan Cowhide Leather Utility Vest",
+    "status": "SUCCESS",
+    "size": 72691
+  },
+  {
+    "dest": "public/media/products/leather-pants.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1000&q=80",
+    "title": "Tailored Leather Trousers",
+    "status": "SUCCESS",
+    "size": 28909
+  },
+  {
+    "dest": "public/media/products/leather-duffle.jpg",
+    "url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=80",
+    "title": "Full-Grain Leather Weekender Duffle",
+    "status": "SUCCESS",
+    "size": 49474
+  },
+  {
+    "dest": "public/media/products/leather-accessories.jpg",
+    "url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1000&q=80",
+    "title": "Handcrafted Leather Belts & Small Goods",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    "dest": "public/media/products/leather-bespoke.jpg",
+    "url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1000&q=80",
+    "title": "Custom Leather Outerwear Development",
+    "status": "SUCCESS",
+    "size": 169323
+  },
+  {
+    "dest": "public/media/products/medical-scrubs.jpg",
+    "url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80",
+    "title": "Antimicrobial Technical Scrub Top & Pants",
+    "status": "SUCCESS",
+    "size": 46676
+  },
+  {
+    "dest": "public/media/products/medical-lab-coat.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1000&q=80",
+    "title": "Tailored Consultation Lab Coat",
+    "status": "SUCCESS",
+    "size": 14702
+  },
+  {
+    "dest": "public/media/products/medical-warmup-jacket.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1000&q=80",
+    "title": "Technical Scrub Warm-Up Jacket",
+    "status": "SUCCESS",
+    "size": 14702
+  },
+  {
+    "dest": "public/media/products/medical-uniforms.jpg",
+    "url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80",
+    "title": "Institutional Hospital & Clinic Uniforms",
+    "status": "SUCCESS",
+    "size": 46676
+  },
+  {
+    "dest": "public/media/products/medical-hospital-wear.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1000&q=80",
+    "title": "Clinical Durability Patient Hospital Wear",
+    "status": "SUCCESS",
+    "size": 14702
+  },
+  {
+    "dest": "public/media/products/medical-custom.jpg",
+    "url": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=80",
+    "title": "Bespoke Antimicrobial Medical Garments",
+    "status": "SUCCESS",
+    "size": 46676
+  },
+  {
+    "dest": "public/media/products/side-products/chains.jpg",
+    "url": "https://images.unsplash.com/photo-1611591475152-478d133ecf94?auto=format&fit=crop&w=800&q=80",
+    "title": "Garment Chains",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1611591475152-478d133ecf94?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "dest": "public/media/products/side-products/buckles.jpg",
+    "url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "title": "Tactical & Roller Buckles",
+    "status": "SUCCESS",
+    "size": 32323
+  },
+  {
+    "dest": "public/media/products/side-products/pins.jpg",
+    "url": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+    "title": "Hard & Soft Enamel Pins",
+    "status": "SUCCESS",
+    "size": 159973
+  },
+  {
+    "dest": "public/media/products/side-products/rhinestones.jpg",
+    "url": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
+    "title": "Hotfix Rhinestone Crystal Transfers",
+    "status": "SUCCESS",
+    "size": 19636
+  },
+  {
+    "dest": "public/media/products/side-products/patches.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=800&q=80",
+    "title": "Chenille & 3D Embroidered Patches",
+    "status": "SUCCESS",
+    "size": 20530
+  },
+  {
+    "dest": "public/media/products/side-products/custom-labels.jpg",
+    "url": "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80",
+    "title": "High-Density Woven Damask Labels",
+    "status": "FAILED",
+    "error": "Status 404 for https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    "dest": "public/media/products/side-products/custom-tags.jpg",
+    "url": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+    "title": "Debossed Brand Hangtags",
+    "status": "SUCCESS",
+    "size": 19985
+  },
+  {
+    "dest": "public/media/products/side-products/custom-hardware.jpg",
+    "url": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80",
+    "title": "Custom Cast Metal Hardware",
+    "status": "SUCCESS",
+    "size": 45533
+  },
+  {
+    "dest": "public/media/products/side-products/business-cards.jpg",
+    "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    "title": "Letterpress Heavyweight Brand Business Cards",
+    "status": "SUCCESS",
+    "size": 33377
+  },
+  {
+    "dest": "public/media/products/side-products/brand-name-plates.jpg",
+    "url": "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?auto=format&fit=crop&w=800&q=80",
+    "title": "Cast Metal Brand Name Plates",
+    "status": "SUCCESS",
+    "size": 47477
+  },
+  {
+    "dest": "public/media/products/side-products/zippers.jpg",
+    "url": "https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?auto=format&fit=crop&w=800&q=80",
+    "title": "YKK Teeth Metal Zippers",
+    "status": "SUCCESS",
+    "size": 84245
+  },
+  {
+    "dest": "public/media/products/side-products/metal-buttons.jpg",
+    "url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80",
+    "title": "Heavy Cast Metal Buttons & Snaps",
+    "status": "SUCCESS",
+    "size": 88841
+  },
+  {
+    "dest": "public/media/products/side-products/custom-logo-plates.jpg",
+    "url": "https://images.unsplash.com/photo-1533158326339-7f3cf2404354?auto=format&fit=crop&w=800&q=80",
+    "title": "Die-Cast Logo Plates",
+    "status": "SUCCESS",
+    "size": 77406
+  },
+  {
+    "dest": "public/media/products/side-products/hang-tags.jpg",
+    "url": "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+    "title": "700 GSM Embossed Hangtags",
+    "status": "SUCCESS",
+    "size": 26966
+  },
+  {
+    "dest": "public/media/products/side-products/packaging-boxes.jpg",
+    "url": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80",
+    "title": "Rigid Presentation & Drop Boxes",
+    "status": "SUCCESS",
+    "size": 25334
+  },
+  {
+    "dest": "public/media/products/side-products/custom-poly-bags.jpg",
+    "url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=800&q=80",
+    "title": "Frosted Ziplock Polybags",
+    "status": "SUCCESS",
+    "size": 186852
+  },
+  {
+    "dest": "public/media/about/about-studio.jpg",
+    "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=80",
+    "title": "GTT Development Studio",
+    "status": "SUCCESS",
+    "size": 101321
+  },
+  {
+    "dest": "public/media/about/about-factory-floor.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1400&q=80",
+    "title": "GTT Main Factory Floor",
+    "status": "SUCCESS",
+    "size": 21039
+  },
+  {
+    "dest": "public/media/about/cutting.jpg",
+    "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80",
+    "title": "Cutting Department",
+    "status": "SUCCESS",
+    "size": 41069
+  },
+  {
+    "dest": "public/media/about/stitching.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=600&q=80",
+    "title": "Stitching Lines",
+    "status": "SUCCESS",
+    "size": 9865
+  },
+  {
+    "dest": "public/media/about/printing.jpg",
+    "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+    "title": "Printing Lab",
+    "status": "SUCCESS",
+    "size": 25039
+  },
+  {
+    "dest": "public/media/about/embroidery.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
+    "title": "Embroidery Suite",
+    "status": "SUCCESS",
+    "size": 13750
+  },
+  {
+    "dest": "public/media/about/qc.jpg",
+    "url": "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+    "title": "Quality Control Department",
+    "status": "SUCCESS",
+    "size": 32549
+  },
+  {
+    "dest": "public/media/about/packaging.jpg",
+    "url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80",
+    "title": "Brand Packaging & Finishing",
+    "status": "SUCCESS",
+    "size": 108799
+  },
+  {
+    "dest": "public/media/blog/gsm-guide.jpg",
+    "url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=80",
+    "title": "How To Choose The Right GSM",
+    "status": "SUCCESS",
+    "size": 103722
+  },
+  {
+    "dest": "public/media/blog/tech-pack-guide.jpg",
+    "url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=80",
+    "title": "What To Know Before Sending Your First Tech Pack",
+    "status": "SUCCESS",
+    "size": 103408
+  },
+  {
+    "dest": "public/media/blog/premium-details-guide.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80",
+    "title": "5 Details That Make Clothing Feel Premium",
+    "status": "SUCCESS",
+    "size": 39111
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-cutting.jpg",
+    "url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80",
+    "title": "Pattern Cutting Mini Preview",
+    "status": "SUCCESS",
+    "size": 41069
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-stitching.jpg",
+    "url": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=600&q=80",
+    "title": "Stitching Mini Preview",
+    "status": "SUCCESS",
+    "size": 9865
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-printing.jpg",
+    "url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+    "title": "Printing Lab Mini Preview",
+    "status": "SUCCESS",
+    "size": 25039
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-embroidery.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80",
+    "title": "Embroidery Mini Preview",
+    "status": "SUCCESS",
+    "size": 13750
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-qc.jpg",
+    "url": "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=600&q=80",
+    "title": "Quality Control Mini Preview",
+    "status": "SUCCESS",
+    "size": 32549
+  },
+  {
+    "dest": "public/media/homepage/factory-preview-packaging.jpg",
+    "url": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80",
+    "title": "Custom Packaging Mini Preview",
+    "status": "SUCCESS",
+    "size": 108799
+  },
+  {
+    "dest": "public/media/homepage/homepage-cta.jpg",
+    "url": "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=1200&q=80",
+    "title": "Homepage Final CTA",
+    "status": "SUCCESS",
+    "size": 39111
+  }
+]

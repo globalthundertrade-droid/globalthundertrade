@@ -1,0 +1,29 @@
+{
+  "submissionId": "gtt-idea-1789806762992",
+  "timestamp": "2026-09-19T08:32:42.992Z",
+  "customer": {
+    "name": "Marcus Vance",
+    "email": "marcus@heavyfleece.co",
+    "company": "Heavy Fleece Atelier",
+    "country": "United States",
+    "phone": "+1 555 019 2831"
+  },
+  "productIdeaPrompt": "Custom 500 GSM washed black vintage hoodie with thick silver metal zippers and 3D puff chest embroidery",
+  "configuratorSpecifications": {
+    "product": "500 GSM Heavyweight Hoodie",
+    "fabric": "French Terry 100% Combed Cotton",
+    "gsm": "500 GSM",
+    "fit": "Oversized Boxy",
+    "color": "Vintage Washed Black",
+    "print": "Screen Print Vintage Wash",
+    "embroidery": "High-Density Puff Chest",
+    "embellishments": "None",
+    "hardware": "Silver YKK Heavyweight Zipper",
+    "labels": "Custom Woven Damask Neck Label",
+    "tags": "Matte Black Hangtag with Waxed String",
+    "washes": "Vintage Enzyme Acid Wash",
+    "packaging": "Frosted Biodegradable Zip Polybag"
+  },
+  "hasReferenceFile": false,
+  "referenceFileName": null
+}
