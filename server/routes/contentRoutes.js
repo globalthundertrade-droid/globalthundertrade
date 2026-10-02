@@ -1,5 +1,6 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function handleContentRoutes(req, res, url, body) {
   const db = getDb();
@@ -76,6 +77,16 @@ function deepMerge(target, source) {
       }
 
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('site_content').upsert({
+          section_key: pageKey,
+          content: db.siteContent[pageKey],
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'section_key' });
+      } catch (e) {}
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({

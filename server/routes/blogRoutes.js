@@ -1,5 +1,6 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth, extractToken, verifySessionToken } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function handleBlogRoutes(req, res, url, body) {
   const db = getDb();
@@ -120,6 +121,28 @@ export function handleBlogRoutes(req, res, url, body) {
       db.blogs = [newPost, ...(db.blogs || [])];
       await saveDb(db);
 
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('blogs').upsert({
+          id: String(newPost.id),
+          slug: newPost.slug || String(newPost.id),
+          title: newPost.title || 'Untitled Blog',
+          category: newPost.category || 'Industry',
+          read_time: newPost.readTime || '5 min read',
+          excerpt: newPost.excerpt || '',
+          content: newPost.content || '',
+          cover_image: newPost.coverImage || newPost.image || '',
+          author: newPost.author || 'Global Thunder Trade Editorial',
+          tags: newPost.tags || [],
+          status: newPost.status || 'published',
+          sort_order: parseInt(newPost.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {
+        console.warn('[Supabase Blog Create] Sync notice:', e.message);
+      }
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: newPost }));
     });
@@ -151,6 +174,28 @@ export function handleBlogRoutes(req, res, url, body) {
 
       db.blogs[blogIndex] = updatedBlog;
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('blogs').upsert({
+          id: String(updatedBlog.id),
+          slug: updatedBlog.slug || String(updatedBlog.id),
+          title: updatedBlog.title || 'Untitled Blog',
+          category: updatedBlog.category || 'Industry',
+          read_time: updatedBlog.readTime || '5 min read',
+          excerpt: updatedBlog.excerpt || '',
+          content: updatedBlog.content || '',
+          cover_image: updatedBlog.coverImage || updatedBlog.image || '',
+          author: updatedBlog.author || 'Global Thunder Trade Editorial',
+          tags: updatedBlog.tags || [],
+          status: updatedBlog.status || 'published',
+          sort_order: parseInt(updatedBlog.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {
+        console.warn('[Supabase Blog Update] Sync notice:', e.message);
+      }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: updatedBlog }));
@@ -185,6 +230,26 @@ export function handleBlogRoutes(req, res, url, body) {
       db.blogs = [duplicated, ...(db.blogs || [])];
       await saveDb(db);
 
+      // Sync duplicate to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('blogs').upsert({
+          id: String(duplicated.id),
+          slug: duplicated.slug,
+          title: duplicated.title,
+          category: duplicated.category || 'Industry',
+          read_time: duplicated.readTime || '5 min read',
+          excerpt: duplicated.excerpt || '',
+          content: duplicated.content || '',
+          cover_image: duplicated.coverImage || '',
+          author: duplicated.author || 'Global Thunder Trade Editorial',
+          tags: duplicated.tags || [],
+          status: 'draft',
+          sort_order: parseInt(duplicated.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {}
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: duplicated }));
     });
@@ -210,6 +275,12 @@ export function handleBlogRoutes(req, res, url, body) {
 
       await saveDb(db);
 
+      // Sync status to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('blogs').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', String(post.id));
+      } catch (e) {}
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, status: newStatus }));
     });
@@ -221,6 +292,7 @@ export function handleBlogRoutes(req, res, url, body) {
     requireAuth(req, res, async () => {
       const targetId = slugMatch[1];
       const initialLen = (db.blogs || []).length;
+      const targetPost = (db.blogs || []).find(b => b.id === targetId || b.slug === targetId);
       db.blogs = (db.blogs || []).filter(b => b.id !== targetId && b.slug !== targetId);
 
       if (db.blogs.length === initialLen) {
@@ -230,6 +302,14 @@ export function handleBlogRoutes(req, res, url, body) {
       }
 
       await saveDb(db);
+
+      // Sync delete to Supabase
+      if (targetPost) {
+        try {
+          const client = getSupabaseServerClient();
+          await client.from('blogs').delete().eq('id', String(targetPost.id));
+        } catch (e) {}
+      }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Article deleted.' }));

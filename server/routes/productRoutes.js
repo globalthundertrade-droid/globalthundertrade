@@ -1,5 +1,6 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth, extractToken, verifySessionToken } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function handleProductRoutes(req, res, url, body) {
   const db = getDb();
@@ -136,6 +137,31 @@ export function handleProductRoutes(req, res, url, body) {
       db.products = [newProduct, ...(db.products || [])];
       await saveDb(db);
 
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('products').upsert({
+          id: String(newProduct.id),
+          slug: newProduct.slug || String(newProduct.id),
+          title: newProduct.name || newProduct.title || 'Untitled',
+          category: newProduct.category || 'street-fashion',
+          subcategory: newProduct.subcategory || '',
+          base_price: parseFloat(newProduct.basePrice || newProduct.price || 0),
+          moq: parseInt(newProduct.moq, 10) || 25,
+          description: newProduct.description || '',
+          image: newProduct.image || '',
+          gallery: newProduct.gallery || [],
+          color_options: newProduct.colorOptions || [],
+          specs: newProduct.specs || {},
+          variants: newProduct.variants || [],
+          status: newProduct.status || 'published',
+          sort_order: parseInt(newProduct.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {
+        console.warn('[Supabase Product Create] Sync notice:', e.message);
+      }
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: newProduct }));
     });
@@ -166,6 +192,31 @@ export function handleProductRoutes(req, res, url, body) {
 
       db.products[productIndex] = updatedProduct;
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('products').upsert({
+          id: String(updatedProduct.id),
+          slug: updatedProduct.slug || String(updatedProduct.id),
+          title: updatedProduct.name || updatedProduct.title || 'Untitled',
+          category: updatedProduct.category || 'street-fashion',
+          subcategory: updatedProduct.subcategory || '',
+          base_price: parseFloat(updatedProduct.basePrice || updatedProduct.price || 0),
+          moq: parseInt(updatedProduct.moq, 10) || 25,
+          description: updatedProduct.description || '',
+          image: updatedProduct.image || '',
+          gallery: updatedProduct.gallery || [],
+          color_options: updatedProduct.colorOptions || [],
+          specs: updatedProduct.specs || {},
+          variants: updatedProduct.variants || [],
+          status: updatedProduct.status || 'published',
+          sort_order: parseInt(updatedProduct.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {
+        console.warn('[Supabase Product Update] Sync notice:', e.message);
+      }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: updatedProduct }));
@@ -200,6 +251,29 @@ export function handleProductRoutes(req, res, url, body) {
       db.products = [duplicated, ...(db.products || [])];
       await saveDb(db);
 
+      // Sync duplicate to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('products').upsert({
+          id: String(duplicated.id),
+          slug: duplicated.slug,
+          title: duplicated.name || duplicated.title,
+          category: duplicated.category || 'street-fashion',
+          subcategory: duplicated.subcategory || '',
+          base_price: parseFloat(duplicated.basePrice || duplicated.price || 0),
+          moq: parseInt(duplicated.moq, 10) || 25,
+          description: duplicated.description || '',
+          image: duplicated.image || '',
+          gallery: duplicated.gallery || [],
+          color_options: duplicated.colorOptions || [],
+          specs: duplicated.specs || {},
+          variants: duplicated.variants || [],
+          status: 'draft',
+          sort_order: parseInt(duplicated.sortOrder, 10) || 0,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {}
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: duplicated }));
     });
@@ -225,6 +299,12 @@ export function handleProductRoutes(req, res, url, body) {
 
       await saveDb(db);
 
+      // Sync status to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('products').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', String(targetId));
+      } catch (e) {}
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, status: newStatus }));
     });
@@ -245,6 +325,12 @@ export function handleProductRoutes(req, res, url, body) {
       }
 
       await saveDb(db);
+
+      // Sync delete to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('products').delete().eq('id', String(targetId));
+      } catch (e) {}
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Product deleted.' }));

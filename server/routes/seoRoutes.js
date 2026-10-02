@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function generateSitemapXml(db) {
   const domain = db.seoSettings?.global?.canonicalDomain || 'https://globalthundertrade.com';
@@ -101,6 +102,17 @@ export function handleSeoRoutes(req, res, url, body) {
       }
 
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('seo_settings').upsert({
+          id: 'default',
+          global_seo: db.seoSettings.global || {},
+          pages_seo: db.seoSettings.pages || {},
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {}
 
       // Auto sync sitemap & robots
       try {

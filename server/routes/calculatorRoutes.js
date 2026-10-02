@@ -1,5 +1,6 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function handleCalculatorRoutes(req, res, url, body) {
   const db = getDb();
@@ -25,6 +26,31 @@ export function handleCalculatorRoutes(req, res, url, body) {
       };
 
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('calculator_settings').upsert({
+          id: 'default',
+          currency: db.calculatorSettings.currency || 'USD',
+          min_moq: db.calculatorSettings.minMoq || 25,
+          disclaimer: db.calculatorSettings.disclaimer || '',
+          products: db.calculatorSettings.products || [],
+          fabrics: db.calculatorSettings.fabrics || [],
+          gsm_weights: db.calculatorSettings.gsmWeights || [],
+          fits: db.calculatorSettings.fits || [],
+          color_dyes: db.calculatorSettings.colorDyes || [],
+          printing: db.calculatorSettings.printing || [],
+          embroidery: db.calculatorSettings.embroidery || [],
+          embellishments: db.calculatorSettings.embellishments || [],
+          labels: db.calculatorSettings.labels || [],
+          tags: db.calculatorSettings.tags || [],
+          wash_finishing: db.calculatorSettings.washFinishing || [],
+          packaging: db.calculatorSettings.packaging || [],
+          quantity_breaks: db.calculatorSettings.quantityBreaks || [],
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' });
+      } catch (e) {}
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({

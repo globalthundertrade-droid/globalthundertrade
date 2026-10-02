@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth } from '../auth.js';
+import { insertInquiryToSupabase, getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 // Simple in-memory IP rate limiter: max 15 submissions per 10 minutes
 const ipRateLimits = new Map();
@@ -91,6 +92,11 @@ export function handleInquiryRoutes(req, res, url, body) {
 
     db.inquiries = [inquiryRecord, ...(db.inquiries || [])];
     saveDb(db);
+
+    // Sync directly to Supabase cloud database
+    insertInquiryToSupabase(inquiryRecord).catch(err => {
+      console.warn('[Supabase Inquiry] Sync notice:', err.message);
+    });
 
     // Attempt SMTP dispatch if configured
     const hasSmtp = Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
@@ -220,6 +226,14 @@ Reply directly to this email to contact ${contactName} (${contactEmail}).
 
       await saveDb(db);
 
+      // Sync status to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('inquiries').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', inquiryId);
+      } catch (e) {
+        console.warn('[Supabase Inquiry Status] Update notice:', e.message);
+      }
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, status: newStatus }));
     });
@@ -234,6 +248,14 @@ Reply directly to this email to contact ${contactName} (${contactEmail}).
       db.inquiries = (db.inquiries || []).filter(i => i.id !== inquiryId);
 
       await saveDb(db);
+
+      // Sync delete to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('inquiries').delete().eq('id', inquiryId);
+      } catch (e) {
+        console.warn('[Supabase Inquiry Delete] Delete notice:', e.message);
+      }
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Inquiry deleted.' }));

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth } from '../auth.js';
+import { uploadBufferToSupabase, getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 const UPLOADS_DIR = path.resolve(process.cwd(), 'public', 'media', 'uploads');
 if (!fs.existsSync(UPLOADS_DIR)) {
@@ -323,6 +324,28 @@ export function handleMediaRoutes(req, res, url, body) {
           associatedSlots: [],
           createdAt: new Date().toISOString()
         };
+
+        // Upload to Supabase Storage bucket
+        try {
+          const sbUpload = await uploadBufferToSupabase(safeFilename, buffer, mimeType);
+          if (sbUpload.success) {
+            newMediaItem.supabaseUrl = sbUpload.publicUrl;
+            const client = getSupabaseServerClient();
+            await client.from('media').upsert({
+              id: newMediaItem.id,
+              url: sbUpload.publicUrl,
+              filename: safeFilename,
+              extension: ext,
+              type: newMediaItem.type,
+              alt: newMediaItem.alt,
+              description: newMediaItem.description,
+              location_tag: newMediaItem.locationTag,
+              created_at: newMediaItem.createdAt
+            }, { onConflict: 'id' });
+          }
+        } catch (sbErr) {
+          console.warn('[Supabase Media Upload] Sync notice:', sbErr.message);
+        }
 
         db.media = [newMediaItem, ...(db.media || [])];
         await saveDb(db);

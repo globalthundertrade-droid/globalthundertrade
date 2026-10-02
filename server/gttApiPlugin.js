@@ -10,6 +10,7 @@ import { handleCalculatorRoutes } from './routes/calculatorRoutes.js';
 import { handleInquiryRoutes } from './routes/inquiryRoutes.js';
 import { handleReviewRoutes } from './routes/reviewRoutes.js';
 import { handleSeoRoutes, generateSitemapXml, generateRobotsTxt } from './routes/seoRoutes.js';
+import { testSupabaseConnection, syncLocalDbToSupabase, BUCKET_NAME } from './db/supabaseBackend.js';
 
 /**
  * GTT BACKEND API VITE PLUGIN
@@ -157,6 +158,32 @@ export function gttApiPlugin() {
             message: "Concept generation model ready. Add GEMINI_API_KEY in .env for generative image rendering.",
             conceptImageUrl: null
           }));
+          return;
+        }
+
+        // 5. GET /api/cms/supabase/status — Real-time Supabase connection diagnostics
+        if (req.method === 'GET' && url === '/api/cms/supabase/status') {
+          const status = await testSupabaseConnection();
+          const supabaseUrl = process.env.SUPABASE_URL || 'https://mclxalvjcwlmyzyszspp.supabase.co';
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: true,
+            url: supabaseUrl,
+            bucket: BUCKET_NAME,
+            storageReady: true,
+            databaseConnected: status.connected,
+            databaseError: status.error || null,
+            sqlEditorUrl: 'https://supabase.com/dashboard/project/mclxalvjcwlmyzyszspp/sql/new'
+          }));
+          return;
+        }
+
+        // 6. POST /api/cms/supabase/sync — Trigger database migration/sync
+        if (req.method === 'POST' && url === '/api/cms/supabase/sync') {
+          const currentDb = getDb();
+          const result = await syncLocalDbToSupabase(currentDb);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(result));
           return;
         }
 

@@ -1,5 +1,6 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth, extractToken, verifySessionToken } from '../auth.js';
+import { getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 export function handleReviewRoutes(req, res, url, body) {
   const db = getDb();
@@ -54,6 +55,23 @@ export function handleReviewRoutes(req, res, url, body) {
       db.reviews = [newReview, ...(db.reviews || [])];
       await saveDb(db);
 
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('reviews').upsert({
+          id: newReview.id,
+          author: newReview.author,
+          company: newReview.location || '',
+          role: newReview.product || '',
+          rating: newReview.rating,
+          text: newReview.text,
+          date: newReview.date,
+          status: newReview.status,
+          sort_order: (db.reviews?.length || 0),
+          created_at: newReview.createdAt
+        }, { onConflict: 'id' });
+      } catch (e) {}
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, review: newReview }));
     });
@@ -85,6 +103,23 @@ export function handleReviewRoutes(req, res, url, body) {
 
       await saveDb(db);
 
+      // Sync to Supabase
+      try {
+        const updated = db.reviews[index];
+        const client = getSupabaseServerClient();
+        await client.from('reviews').upsert({
+          id: updated.id,
+          author: updated.author,
+          company: updated.location || updated.company || '',
+          role: updated.product || updated.role || '',
+          rating: updated.rating,
+          text: updated.text,
+          date: updated.date,
+          status: updated.status,
+          sort_order: parseInt(updated.sortOrder, 10) || 0
+        }, { onConflict: 'id' });
+      } catch (e) {}
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, review: db.reviews[index] }));
     });
@@ -97,6 +132,12 @@ export function handleReviewRoutes(req, res, url, body) {
       const reviewId = reviewMatch[1];
       db.reviews = (db.reviews || []).filter(r => r.id !== reviewId);
       await saveDb(db);
+
+      // Sync to Supabase
+      try {
+        const client = getSupabaseServerClient();
+        await client.from('reviews').delete().eq('id', reviewId);
+      } catch (e) {}
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Review deleted.' }));
