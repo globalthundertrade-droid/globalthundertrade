@@ -5,8 +5,12 @@ import { requireAuth } from '../auth.js';
 import { uploadBufferToSupabase, getSupabaseServerClient } from '../db/supabaseBackend.js';
 
 const UPLOADS_DIR = path.resolve(process.cwd(), 'public', 'media', 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Ignored in read-only serverless filesystems
 }
 
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.svg', '.mp4', '.webm', '.mov', '.jfif'];
@@ -304,7 +308,11 @@ export function handleMediaRoutes(req, res, url, body) {
         const safeFilename = `${cleanBase}-${Date.now()}${ext}`;
         const targetFilePath = path.join(UPLOADS_DIR, safeFilename);
 
-        fs.writeFileSync(targetFilePath, buffer);
+        try {
+          fs.writeFileSync(targetFilePath, buffer);
+        } catch (fsErr) {
+          console.warn('[CMS Media Upload] Local disk write skipped (serverless environment):', fsErr.message);
+        }
 
         const publicUrl = `/media/uploads/${safeFilename}`;
         const newMediaItem = {

@@ -1,6 +1,7 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth, extractToken, verifySessionToken } from '../auth.js';
 import { getSupabaseServerClient } from '../db/supabaseBackend.js';
+import { syncSitemapFiles } from './seoRoutes.js';
 
 export function handleProductRoutes(req, res, url, body) {
   const db = getDb();
@@ -162,6 +163,9 @@ export function handleProductRoutes(req, res, url, body) {
         console.warn('[Supabase Product Create] Sync notice:', e.message);
       }
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: newProduct }));
     });
@@ -217,6 +221,9 @@ export function handleProductRoutes(req, res, url, body) {
       } catch (e) {
         console.warn('[Supabase Product Update] Sync notice:', e.message);
       }
+
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: updatedProduct }));
@@ -274,6 +281,9 @@ export function handleProductRoutes(req, res, url, body) {
         }, { onConflict: 'id' });
       } catch (e) {}
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, product: duplicated }));
     });
@@ -305,6 +315,9 @@ export function handleProductRoutes(req, res, url, body) {
         await client.from('products').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', String(targetId));
       } catch (e) {}
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, status: newStatus }));
     });
@@ -331,6 +344,9 @@ export function handleProductRoutes(req, res, url, body) {
         const client = getSupabaseServerClient();
         await client.from('products').delete().eq('id', String(targetId));
       } catch (e) {}
+
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Product deleted.' }));

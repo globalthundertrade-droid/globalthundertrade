@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node ./server/scripts/generateSitemap.js && vite build",
+    "preview": "vite preview",
+    "sitemap": "node ./server/scripts/generateSitemap.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

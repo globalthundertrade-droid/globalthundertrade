@@ -3,16 +3,34 @@ import path from 'path';
 import crypto from 'crypto';
 
 // Path constants
-const DATA_DIR = path.resolve(process.cwd(), 'server', 'data');
+const IS_SERVERLESS = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY);
+const ORIGINAL_DATA_DIR = path.resolve(process.cwd(), 'server', 'data');
+const ORIGINAL_DB_FILE = path.join(ORIGINAL_DATA_DIR, 'cms_db.json');
+
+const DATA_DIR = IS_SERVERLESS 
+  ? path.join('/tmp', 'gtt_data')
+  : ORIGINAL_DATA_DIR;
 const BACKUPS_DIR = path.join(DATA_DIR, 'backups');
 const DB_FILE = path.join(DATA_DIR, 'cms_db.json');
 
-// Ensure directories exist
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-if (!fs.existsSync(BACKUPS_DIR)) {
-  fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+// Ensure directories exist safely (without crashing on read-only filesystems)
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+  if (!fs.existsSync(BACKUPS_DIR)) {
+    fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+  }
+  // In serverless, prime /tmp with bundled DB seed if not already present
+  if (IS_SERVERLESS && !fs.existsSync(DB_FILE) && fs.existsSync(ORIGINAL_DB_FILE)) {
+    try {
+      fs.copyFileSync(ORIGINAL_DB_FILE, DB_FILE);
+    } catch (copyErr) {
+      console.warn('[CMS Storage] Could not copy DB to /tmp:', copyErr.message);
+    }
+  }
+} catch (dirErr) {
+  console.warn('[CMS Storage] Directory initialization skipped (read-only filesystem):', dirErr.message);
 }
 
 // In-memory cache & write queue to prevent concurrent corruption
@@ -539,6 +557,7 @@ export function getDb() {
     return inMemoryDb;
   }
 
+  // 1. Try DB_FILE (local dev or /tmp in serverless)
   if (fs.existsSync(DB_FILE)) {
     try {
       const data = fs.readFileSync(DB_FILE, 'utf8');
@@ -549,10 +568,23 @@ export function getDb() {
     }
   }
 
+  // 2. Fallback to bundled original DB file in serverless
+  if (IS_SERVERLESS && fs.existsSync(ORIGINAL_DB_FILE)) {
+    try {
+      const data = fs.readFileSync(ORIGINAL_DB_FILE, 'utf8');
+      inMemoryDb = JSON.parse(data);
+      return inMemoryDb;
+    } catch (err) {
+      console.error('[CMS Storage] Error reading original database file:', err);
+    }
+  }
+
   // Initialize brand new DB
   inMemoryDb = createInitialDb();
   seedExistingData(inMemoryDb);
-  saveDbSync(inMemoryDb);
+  try {
+    saveDbSync(inMemoryDb);
+  } catch (e) {}
   return inMemoryDb;
 }
 
@@ -567,11 +599,11 @@ export function saveDbSync(db) {
     fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf8');
     fs.renameSync(tempFile, DB_FILE);
   } catch (err) {
-    console.error('[CMS Storage] Failed atomic database write:', err);
+    console.warn('[CMS Storage] File write skipped (preserving state in-memory):', err.message);
     if (fs.existsSync(tempFile)) {
       try { fs.unlinkSync(tempFile); } catch (e) {}
     }
-    throw err;
+    // Do not throw so that API operations still complete successfully
   }
 }
 
@@ -610,19 +642,26 @@ export function createBackup() {
   const currentDb = getDb();
   const backupFilename = `cms_backup_${Date.now()}.json`;
   const backupPath = path.join(BACKUPS_DIR, backupFilename);
-  fs.writeFileSync(backupPath, JSON.stringify(currentDb, null, 2), 'utf8');
-
-  const existingBackups = fs.readdirSync(BACKUPS_DIR)
-    .filter(f => f.startsWith('cms_backup_') && f.endsWith('.json'))
-    .sort()
-    .reverse();
-
-  if (existingBackups.length > 15) {
-    for (let i = 15; i < existingBackups.length; i++) {
-      try {
-        fs.unlinkSync(path.join(BACKUPS_DIR, existingBackups[i]));
-      } catch (e) {}
+  try {
+    if (!fs.existsSync(BACKUPS_DIR)) {
+      fs.mkdirSync(BACKUPS_DIR, { recursive: true });
     }
+    fs.writeFileSync(backupPath, JSON.stringify(currentDb, null, 2), 'utf8');
+
+    const existingBackups = fs.readdirSync(BACKUPS_DIR)
+      .filter(f => f.startsWith('cms_backup_') && f.endsWith('.json'))
+      .sort()
+      .reverse();
+
+    if (existingBackups.length > 15) {
+      for (let i = 15; i < existingBackups.length; i++) {
+        try {
+          fs.unlinkSync(path.join(BACKUPS_DIR, existingBackups[i]));
+        } catch (e) {}
+      }
+    }
+  } catch (err) {
+    console.warn('[CMS Storage] Backup file write skipped:', err.message);
   }
 
   return { backupFilename, backupPath };

@@ -1,4 +1,4 @@
-import { CATEGORIES_MEDIA } from './mediaConfig';
+import { CATEGORIES_MEDIA } from './mediaConfig.js';
 
 export const CATEGORIES = [
   {

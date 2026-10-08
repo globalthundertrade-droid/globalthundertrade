@@ -9,7 +9,7 @@ import { handleContentRoutes } from './routes/contentRoutes.js';
 import { handleCalculatorRoutes } from './routes/calculatorRoutes.js';
 import { handleInquiryRoutes } from './routes/inquiryRoutes.js';
 import { handleReviewRoutes } from './routes/reviewRoutes.js';
-import { handleSeoRoutes, generateSitemapXml, generateRobotsTxt } from './routes/seoRoutes.js';
+import { handleSeoRoutes, generateSitemapXml, generateRobotsTxt, syncSitemapFiles } from './routes/seoRoutes.js';
 import { testSupabaseConnection, syncLocalDbToSupabase, BUCKET_NAME } from './db/supabaseBackend.js';
 
 /**
@@ -31,12 +31,9 @@ export function gttApiPlugin() {
     // Ensure initial DB is seeded
     const db = getDb();
 
-    // Ensure sitemap.xml and robots.txt are current on startup
+    // Ensure dynamic sitemap.xml and robots.txt are current on startup
     try {
-      const sitemapPath = path.resolve(process.cwd(), 'public', 'sitemap.xml');
-      const robotsPath = path.resolve(process.cwd(), 'public', 'robots.txt');
-      fs.writeFileSync(sitemapPath, generateSitemapXml(db), 'utf8');
-      fs.writeFileSync(robotsPath, generateRobotsTxt(db), 'utf8');
+      syncSitemapFiles(db);
     } catch (e) {
       console.warn('[GTT Plugin] Warning syncing sitemap on startup:', e);
     }

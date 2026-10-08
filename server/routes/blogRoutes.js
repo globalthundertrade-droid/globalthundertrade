@@ -1,6 +1,7 @@
 import { getDb, saveDb } from '../db/cmsStorage.js';
 import { requireAuth, extractToken, verifySessionToken } from '../auth.js';
 import { getSupabaseServerClient } from '../db/supabaseBackend.js';
+import { syncSitemapFiles } from './seoRoutes.js';
 
 export function handleBlogRoutes(req, res, url, body) {
   const db = getDb();
@@ -143,6 +144,9 @@ export function handleBlogRoutes(req, res, url, body) {
         console.warn('[Supabase Blog Create] Sync notice:', e.message);
       }
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: newPost }));
     });
@@ -197,6 +201,9 @@ export function handleBlogRoutes(req, res, url, body) {
         console.warn('[Supabase Blog Update] Sync notice:', e.message);
       }
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: updatedBlog }));
     });
@@ -250,6 +257,9 @@ export function handleBlogRoutes(req, res, url, body) {
         }, { onConflict: 'id' });
       } catch (e) {}
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, blog: duplicated }));
     });
@@ -281,6 +291,9 @@ export function handleBlogRoutes(req, res, url, body) {
         await client.from('blogs').update({ status: newStatus, updated_at: new Date().toISOString() }).eq('id', String(post.id));
       } catch (e) {}
 
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, status: newStatus }));
     });
@@ -310,6 +323,9 @@ export function handleBlogRoutes(req, res, url, body) {
           await client.from('blogs').delete().eq('id', String(targetPost.id));
         } catch (e) {}
       }
+
+      // Auto-sync dynamic sitemap
+      syncSitemapFiles(db);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, message: 'Article deleted.' }));
